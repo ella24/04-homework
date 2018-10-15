@@ -1,7 +1,9 @@
 import * as d3 from 'd3'
 
 var margin = { top: 40, left: 50, right: 50, bottom: 40 }
+
 var height = 300 - margin.top - margin.bottom
+
 var width = 600 - margin.left - margin.right
 
 var svg = d3
@@ -57,39 +59,43 @@ function ready(datapoints) {
     .attr('stroke-width', 2)
     .attr('fill', 'none')
 
+  // Create the circles
   svg
     .selectAll('circle')
     .data(datapoints)
     .enter()
     .append('circle')
-    .attr('r', 2.5)
-    .attr('fill', '#4cc1fc')
-    .attr('cx', function(d) {
+    .attr('r', 2)
+    .attr('cx', d => {
       return xPositionScale(d.datetime)
     })
-    .attr('cy', function(d) {
+    .attr('cy', d => {
       return yPositionScale(d.Close)
     })
-    .on('mouseover', function(d, i, nodes) {
-      // Make the circle black
-      d3.select(nodes[i])
+    .attr('fill', '#4cc1fc')
+    .on('mouseover', function(d) {
+      // Make the circle bigger
+      d3.select(this)
         .transition()
-        .duration(130)
+        .duration(150)
+        .attr('fill', '#4cc1fc')
         .attr('r', 4)
+
       d3.select('#date').text(d.Date)
       d3.select('#open').text(d.Open)
       d3.select('#high').text(d.High)
       d3.select('#low').text(d.Low)
-      d3.select('#close').text(d.Close)
-      d3.select('#volume').text(d.Volume)
-      d3.select('#adjclose').text(+d['Adj Close'])
+
       d3.select('#info').style('display', 'block')
     })
+    // Change it back
     .on('mouseout', function(d) {
       d3.select(this)
         .transition()
-        .attr('fill', '#4CC1FC')
-        .attr('r', 2.5)
+        .duration(200)
+        .attr('fill', '#4cc1fc')
+        .attr('r', 2)
+      d3.select('#info').style('display', 'none')
     })
 
   svg
@@ -98,7 +104,7 @@ function ready(datapoints) {
     .attr('x', width / 2)
     .attr('y', 0)
     .attr('text-anchor', 'middle')
-    .attr('font-size', 18)
+    .attr('font-size', 20)
     .attr('font-weight', 'bold')
 
   var xAxis = d3
