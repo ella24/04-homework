@@ -93,6 +93,7 @@ function ready(datapoints) {
   datapoints.forEach(d => {
     d.deaths_per_100k = Math.round(d.deaths / d.population / 10)
   })
+  console.log(datapoints)
 
   svg
     .selectAll('circle')
@@ -110,47 +111,46 @@ function ready(datapoints) {
       return colorScale(d.state)
     })
     .attr('class', d => {
-      console.log(d.state.toLowerCase().replace(' ', ''))
-      return d.state.toLowerCase().replace(' ', '')
+      return d.state
     })
     //  Make the highlight //
     .on('mouseover', function(d) {
-      var className = d.state.toLowerCase().replace(' ', '')
+      var ClassName = d.state
       svg
-        .selectAll('circle.' + className)
+        .selectAll('circle.' + ClassName)
         .transition()
         .duration(100)
-        .attr('fill', '#e34a33')
+        .attr('fill', '#fc4e2a')
       svg
-        .selectAll('path.' + className)
+        .selectAll('path.' + ClassName)
         .transition()
         .duration(100)
-        .attr('stroke', '#e34a33')
+        .attr('stroke', '#fc4e2a')
       svg
-        .selectAll('text.' + className)
+        .selectAll('text.' + ClassName)
         .transition()
         .duration(100)
-        .attr('fill', '#e34a33')
+        .attr('fill', '#fc4e2a')
     })
-    //  Erase highlight //
+    //  Erase the highlight //
     .on('mouseout', function(d) {
-      var className = d.state.toLowerCase().replace(' ', '')
+      var ClassName = d.state
       svg
-        .selectAll('circle.' + className)
+        .selectAll('circle.' + ClassName)
         .transition()
         .duration(100)
         .attr('fill', function(d) {
           return colorScale(d.state)
         })
       svg
-        .selectAll('path.' + className)
+        .selectAll('path.' + ClassName)
         .transition()
         .duration(100)
         .attr('stroke', function(d) {
           return colorScale(d.key)
         })
       svg
-        .selectAll('text.' + className)
+        .selectAll('text.' + ClassName)
         .transition()
         .duration(100)
         .attr('fill', function(d) {
@@ -179,52 +179,52 @@ function ready(datapoints) {
       return line(d.values)
     })
     .attr('class', d => {
-      return d.key.toLowerCase().replace(' ', '')
+      return d.key
     })
+    //  Make the highlight //
     .on('mouseover', function(d) {
-      var className = d.key.toLowerCase().replace(' ', '')
+      var ClassName = d.key
       svg
-        .selectAll('circle.' + className)
+        .selectAll('circle.' + ClassName)
         .transition()
         .duration(100)
-        .attr('fill', '#e34a33')
+        .attr('fill', '#fc4e2a')
       svg
-        .selectAll('path.' + className)
+        .selectAll('path.' + ClassName)
         .transition()
         .duration(100)
-        .attr('stroke', '#e34a33')
+        .attr('stroke', '#fc4e2a')
       svg
-        .selectAll('text.' + className)
+        .selectAll('text.' + ClassName)
         .transition()
         .duration(100)
-        .attr('fill', '#e34a33')
+        .attr('fill', '#fc4e2a')
     })
+    //  Erase the highlight //
     .on('mouseout', function(d) {
-      var className = d.key.toLowerCase().replace(' ', '')
-      // d3.select('body').selectAll('.' + className)
+      var ClassName = d.key
       svg
-        .selectAll('circle.' + className)
+        .selectAll('circle.' + ClassName)
         .transition()
         .duration(100)
         .attr('fill', function(d) {
           return colorScale(d.state)
         })
       svg
-        .selectAll('path.' + className)
+        .selectAll('path.' + ClassName)
         .transition()
         .duration(100)
         .attr('stroke', function(d) {
           return colorScale(d.key)
         })
       svg
-        .selectAll('text.' + className)
+        .selectAll('text.' + ClassName)
         .transition()
         .duration(100)
         .attr('fill', function(d) {
           return colorScale(d.key)
         })
     })
-
   svg
     .selectAll('text')
     .data(nested)
@@ -250,52 +250,52 @@ function ready(datapoints) {
       return 3
     })
     .attr('class', d => {
-      return d.key.toLowerCase().replace(' ', '')
+      return d.key
     })
+    //  Make the highlight //
     .on('mouseover', function(d) {
-      var className = d.key.toLowerCase().replace(' ', '')
-
+      var ClassName = d.key
       svg
-        .selectAll('circle.' + className)
+        .selectAll('circle.' + ClassName)
         .transition()
         .duration(100)
-        .attr('fill', '#e34a33')
+        .attr('fill', '#fc4e2a')
       svg
-        .selectAll('path.' + className)
+        .selectAll('path.' + ClassName)
         .transition()
         .duration(100)
-        .attr('stroke', '#e34a33')
+        .attr('stroke', '#fc4e2a')
       svg
-        .selectAll('text.' + className)
+        .selectAll('text.' + ClassName)
         .transition()
         .duration(100)
-        .attr('fill', '#e34a33')
+        .attr('fill', '#fc4e2a')
     })
+    //  Erase the highlight //
     .on('mouseout', function(d) {
-      var className = d.key.toLowerCase().replace(' ', '')
+      var ClassName = d.key
       svg
-        .selectAll('circle.' + className)
+        .selectAll('text.' + ClassName)
+        .transition()
+        .duration(100)
+        .attr('fill', function(d) {
+          return colorScale(d.key)
+        })
+      svg
+        .selectAll('circle.' + ClassName)
         .transition()
         .duration(100)
         .attr('fill', function(d) {
           return colorScale(d.state)
         })
       svg
-        .selectAll('path.' + className)
+        .selectAll('path.' + ClassName)
         .transition()
         .duration(100)
         .attr('stroke', function(d) {
           return colorScale(d.key)
         })
-      svg
-        .selectAll('text.' + className)
-        .transition()
-        .duration(100)
-        .attr('fill', function(d) {
-          return colorScale(d.key)
-        })
     })
-
   var xAxis = d3.axisBottom(xPositionScale)
 
   svg
