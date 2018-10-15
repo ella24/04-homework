@@ -47,9 +47,9 @@ function ready(datapoints) {
   d3.select('#asia').on('click', function() {
     svg.selectAll('rect').attr('fill', function(d) {
       if (d.continent === 'Asia') {
-        return '#a6bddb'
+        return '#6e016b'
       } else {
-        return '#ece7f2'
+        return '#cccccc'
       }
     })
   })
@@ -57,9 +57,9 @@ function ready(datapoints) {
   d3.select('#africa').on('click', function() {
     svg.selectAll('rect').attr('fill', function(d) {
       if (d.continent === 'Africa') {
-        return '#2b8cbe'
+        return '#8c6bb1'
       } else {
-        return '#ece7f2'
+        return '#cccccc'
       }
     })
   })
@@ -67,9 +67,9 @@ function ready(datapoints) {
   d3.select('#namerica').on('click', function() {
     svg.selectAll('rect').attr('fill', function(d) {
       if (d.continent === 'N. America') {
-        return '#a1d99b'
+        return '#9ebcda'
       } else {
-        return '#ece7f2'
+        return '#cccccc'
       }
     })
   })
@@ -77,9 +77,9 @@ function ready(datapoints) {
   d3.select('#lowgdp').on('click', function() {
     svg.selectAll('rect').attr('fill', function(d) {
       if (d.gdp_per_capita < 800) {
-        return '#31a354'
+        return '#f768a1'
       } else {
-        return '#ece7f2'
+        return '#cccccc'
       }
     })
   })
@@ -87,30 +87,30 @@ function ready(datapoints) {
   d3.select('#continent').on('click', function() {
     svg.selectAll('rect').attr('fill', function(d) {
       if (d.continent === 'Africa') {
-        return '#2b8cbe'
+        return '#8c6bb1'
       }
       if (d.continent === 'Asia') {
-        return '#a6bddb'
+        return '#6e016b'
       }
       if (d.continent === 'N. America') {
         return '#9ebcda'
       }
       if (d.continent === 'S. America') {
-        return '#edf8b1'
+        return '#feebe2'
       }
       if (d.continent === 'Antartica') {
-        return '#7fcdbb'
+        return '#e7298a'
       }
       if (d.continent === 'Oceania') {
-        return '#2c7fb8'
+        return 'black'
       } else {
-        return '#ece7f2'
+        return 'lightgray'
       }
     })
   })
 
   d3.select('#reset').on('click', function() {
-    svg.selectAll('rect').attr('fill', '#ece7f2')
+    svg.selectAll('rect').attr('fill', '#cccccc')
   })
 
   /* Add your rectangles here */
@@ -130,7 +130,7 @@ function ready(datapoints) {
       return xPositionScale(d.country)
     })
     .attr('width', xPositionScale.bandwidth())
-    .attr('fill', '#ece7f2')
+    .attr('fill', '#cccccc')
 
   const yAxis = d3
     .axisLeft(yPositionScale)
